@@ -1,0 +1,48 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "date": "2026-03-20",
+      "type": "拜访",
+      "content": "首次拜访长机科技，与总工钟瑞龄交流EAM系统需求，了解客户DCMM认证后数字化升级计划",
+      "attendees": ["张三（销售）", "钟瑞龄（长机科技总工）"],
+      "actions": [
+        { "action": "发送EAM产品资料", "owner": "销售", "assignee": "张三", "deadline": "2026-03-22", "done": true, "completedAt": "2026-03-21" },
+        { "action": "整理客户技术需求清单", "owner": "售前", "assignee": "李四", "deadline": "2026-03-25", "done": true, "completedAt": "2026-03-24" }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "2026-03-25",
+      "type": "电话",
+      "content": "电话跟进，确认预算已审批100万，要求26年年底上线，客户在对比SaaS产品与定制开发",
+      "attendees": ["张三（销售）", "钟瑞龄（长机科技总工）"],
+      "actions": [
+        { "action": "输出EAM定制开发方案", "owner": "方案", "assignee": "", "deadline": "2026-04-05", "done": false, "completedAt": null },
+        { "action": "了解客户评估的SaaS产品具体品牌", "owner": "销售", "assignee": "张三", "deadline": "2026-04-01", "done": false, "completedAt": null }
+      ]
+    },
+    {
+      "id": 3,
+      "date": "2026-03-27",
+      "type": "会议",
+      "content": "与生产副总瞿祖训沟通设备管理痛点，了解恒温装配车间设备维护需求",
+      "attendees": ["张三（销售）", "李四（售前）", "瞿祖训（长机科技生产副总）"],
+      "actions": [
+        { "action": "收集总装车间设备清单", "owner": "售前", "assignee": "李四", "deadline": "2026-04-10", "done": false, "completedAt": null },
+        { "action": "确认西门子系统对接接口规范", "owner": "售前", "assignee": "", "deadline": "2026-04-15", "done": false, "completedAt": null }
+      ]
+    },
+    {
+      "id": 4,
+      "date": "2026-03-28",
+      "type": "线上沟通",
+      "content": "向客户发送初步方案框架，预约下周技术交流会",
+      "attendees": ["张三（销售）", "钟瑞龄（长机科技总工）"],
+      "actions": [
+        { "action": "准备技术交流PPT", "owner": "售前", "assignee": "李四", "deadline": "2026-03-31", "done": false, "completedAt": null },
+        { "action": "安排技术交流会时间", "owner": "销售", "assignee": "张三", "deadline": "2026-03-30", "done": false, "completedAt": null }
+      ]
+    }
+  ]
+}
