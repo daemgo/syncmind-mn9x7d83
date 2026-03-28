@@ -1,0 +1,1383 @@
+{
+  "meta": {
+    "specVersion": "1.0.0",
+    "specHash": "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+    "generatedAt": "2026-03-28T00:00:00Z",
+    "sourceMode": "spec"
+  },
+  "globalRules": {
+    "dictionary": [
+      {
+        "dictId": "equipment-status",
+        "dictName": "设备状态",
+        "items": [
+          { "value": "running", "label": "运行中", "color": "green" },
+          { "value": "stopped", "label": "停机", "color": "gray" },
+          { "value": "fault", "label": "故障", "color": "red" },
+          { "value": "disabled", "label": "停用", "color": "default" }
+        ]
+      },
+      {
+        "dictId": "equipment-category",
+        "dictName": "设备分类",
+        "items": [
+          { "value": "cnc", "label": "数控机床" },
+          { "value": "milling", "label": "铣床" },
+          { "value": "lathe", "label": "车床" },
+          { "value": "grinding", "label": "磨床" },
+          { "value": "other", "label": "其他" }
+        ]
+      },
+      {
+        "dictId": "workshop",
+        "dictName": "车间",
+        "items": [
+          { "value": "ws1", "label": "一车间" },
+          { "value": "ws2", "label": "二车间" },
+          { "value": "ws3", "label": "三车间" }
+        ]
+      },
+      {
+        "dictId": "plan-status",
+        "dictName": "计划状态",
+        "items": [
+          { "value": "pending", "label": "待执行", "color": "default" },
+          { "value": "running", "label": "执行中", "color": "blue" },
+          { "value": "completed", "label": "已完成", "color": "green" },
+          { "value": "skipped", "label": "已跳过", "color": "gray" }
+        ]
+      },
+      {
+        "dictId": "plan-type",
+        "dictName": "计划类型",
+        "items": [
+          { "value": "maintenance", "label": "保养" },
+          { "value": "overhaul", "label": "检修" },
+          { "value": "calibration", "label": "校准" }
+        ]
+      },
+      {
+        "dictId": "plan-cycle",
+        "dictName": "计划周期",
+        "items": [
+          { "value": "day", "label": "按日" },
+          { "value": "week", "label": "按周" },
+          { "value": "month", "label": "按月" },
+          { "value": "hour", "label": "按运行小时" }
+        ]
+      },
+      {
+        "dictId": "workorder-status",
+        "dictName": "工单状态",
+        "items": [
+          { "value": "pending", "label": "待派工", "color": "default" },
+          { "value": "assigned", "label": "待执行", "color": "orange" },
+          { "value": "processing", "label": "执行中", "color": "blue" },
+          { "value": "verifying", "label": "待验收", "color": "purple" },
+          { "value": "completed", "label": "已完成", "color": "green" },
+          { "value": "cancelled", "label": "已取消", "color": "gray" }
+        ]
+      },
+      {
+        "dictId": "order-type",
+        "dictName": "工单类型",
+        "items": [
+          { "value": "planned", "label": "计划维护" },
+          { "value": "breakdown", "label": "故障维修" }
+        ]
+      },
+      {
+        "dictId": "priority",
+        "dictName": "紧急程度",
+        "items": [
+          { "value": "high", "label": "高", "color": "red" },
+          { "value": "medium", "label": "中", "color": "orange" },
+          { "value": "low", "label": "低", "color": "green" }
+        ]
+      },
+      {
+        "dictId": "spare-category",
+        "dictName": "备件分类",
+        "items": [
+          { "value": "electrical", "label": "电气元件" },
+          { "value": "mechanical", "label": "机械零件" },
+          { "value": "hydraulic", "label": "液压元件" },
+          { "value": "cutting", "label": "刀具" },
+          { "value": "other", "label": "其他" }
+        ]
+      },
+      {
+        "dictId": "stock-status",
+        "dictName": "库存状态",
+        "items": [
+          { "value": "normal", "label": "正常", "color": "green" },
+          { "value": "warning", "label": "预警", "color": "orange" },
+          { "value": "outofstock", "label": "缺货", "color": "red" }
+        ]
+      },
+      {
+        "dictId": "unit",
+        "dictName": "单位",
+        "items": [
+          { "value": "piece", "label": "件" },
+          { "value": "set", "label": "套" },
+          { "value": "kg", "label": "千克" },
+          { "value": "meter", "label": "米" }
+        ]
+      },
+      {
+        "dictId": "protocol",
+        "dictName": "协议类型",
+        "items": [
+          { "value": "opcua", "label": "OPC UA" },
+          { "value": "modbus", "label": "Modbus TCP" }
+        ]
+      },
+      {
+        "dictId": "datatype",
+        "dictName": "数据类型",
+        "items": [
+          { "value": "bool", "label": "布尔" },
+          { "value": "int", "label": "整数" },
+          { "value": "float", "label": "浮点数" },
+          { "value": "string", "label": "字符串" }
+        ]
+      }
+    ],
+    "statusFlows": [
+      {
+        "entityType": "workorder",
+        "states": [
+          { "value": "pending", "label": "待派工" },
+          { "value": "assigned", "label": "待执行" },
+          { "value": "processing", "label": "执行中" },
+          { "value": "verifying", "label": "待验收" },
+          { "value": "completed", "label": "已完成" },
+          { "value": "cancelled", "label": "已取消" }
+        ],
+        "transitions": [
+          { "from": "pending", "to": "assigned", "action": "派工", "condition": "指定负责人" },
+          { "from": "pending", "to": "cancelled", "action": "取消" },
+          { "from": "assigned", "to": "processing", "action": "开始执行", "condition": "负责人操作" },
+          { "from": "processing", "to": "verifying", "action": "提交验收", "condition": "填写处理记录" },
+          { "from": "verifying", "to": "completed", "action": "验收通过", "condition": "设备管理员操作" },
+          { "from": "verifying", "to": "processing", "action": "验收驳回", "condition": "设备管理员操作" }
+        ]
+      },
+      {
+        "entityType": "equipment",
+        "states": [
+          { "value": "running", "label": "运行中" },
+          { "value": "stopped", "label": "停机" },
+          { "value": "fault", "label": "故障" },
+          { "value": "disabled", "label": "停用" }
+        ],
+        "transitions": [
+          { "from": "running", "to": "fault", "action": "故障发生", "condition": "西门子系统自动触发或人工报修" },
+          { "from": "fault", "to": "running", "action": "维修完成", "condition": "工单验收通过" },
+          { "from": "running", "to": "stopped", "action": "正常停机" },
+          { "from": "stopped", "to": "running", "action": "启动" },
+          { "from": "running", "to": "disabled", "action": "停用", "condition": "设备管理员操作" },
+          { "from": "stopped", "to": "disabled", "action": "停用", "condition": "设备管理员操作" },
+          { "from": "fault", "to": "disabled", "action": "停用", "condition": "设备管理员操作" },
+          { "from": "disabled", "to": "running", "action": "启用", "condition": "设备管理员操作" }
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "roleId": "admin",
+        "roleName": "系统管理员",
+        "permissions": ["*"]
+      },
+      {
+        "roleId": "equipment-manager",
+        "roleName": "设备管理员",
+        "permissions": ["equipment:*", "maintenance:*", "spares:view", "analytics:view", "settings:basis"]
+      },
+      {
+        "roleId": "maintenance-engineer",
+        "roleName": "维修工程师",
+        "permissions": ["equipment:view", "maintenance:workorder:process", "analytics:view"]
+      },
+      {
+        "roleId": "workshop-director",
+        "roleName": "车间主任",
+        "permissions": ["dashboard:view", "equipment:view", "maintenance:view", "analytics:view"]
+      },
+      {
+        "roleId": " purchaser",
+        "roleName": "采购人员",
+        "permissions": ["spares:*", "analytics:view"]
+      },
+      {
+        "roleId": "company-leader",
+        "roleName": "公司领导",
+        "permissions": ["dashboard:view", "analytics:view"]
+      }
+    ]
+  },
+  "sitemap": [
+    {
+      "menuId": "dashboard",
+      "menuName": "监控大屏",
+      "icon": "LayoutDashboard",
+      "path": "/dashboard"
+    },
+    {
+      "menuId": "equipment",
+      "menuName": "设备管理",
+      "icon": "Wrench",
+      "children": [
+        { "menuName": "设备台账", "path": "/equipment" },
+        { "menuName": "设备详情", "path": "/equipment/:id" }
+      ]
+    },
+    {
+      "menuId": "maintenance",
+      "menuName": "维护管理",
+      "icon": "CalendarClock",
+      "children": [
+        { "menuName": "维护计划", "path": "/maintenance/plans" },
+        { "menuName": "维修工单", "path": "/maintenance/workorders" }
+      ]
+    },
+    {
+      "menuId": "spares",
+      "menuName": "备件管理",
+      "icon": "Package",
+      "children": [
+        { "menuName": "备件台账", "path": "/spares" },
+        { "menuName": "库存预警", "path": "/spares/alerts" }
+      ]
+    },
+    {
+      "menuId": "analytics",
+      "menuName": "分析报表",
+      "icon": "BarChart3",
+      "children": [
+        { "menuName": "设备绩效", "path": "/analytics/performance" },
+        { "menuName": "维护分析", "path": "/analytics/maintenance" }
+      ]
+    },
+    {
+      "menuId": "settings",
+      "menuName": "系统设置",
+      "icon": "Settings",
+      "children": [
+        { "menuName": "基础数据", "path": "/settings/basis" },
+        { "menuName": "集成配置", "path": "/settings/integration" }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "moduleId": "equipment",
+      "moduleName": "设备管理",
+      "routeBase": "/equipment",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "equipment-list",
+          "pageName": "设备台账列表",
+          "path": "/equipment",
+          "layout": "list",
+          "filePath": "src/app/equipment/page.tsx",
+          "sections": [
+            {
+              "sectionId": "equipment-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "text", "required": false },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "required": false },
+                { "fieldKey": "categoryId", "label": "设备分类", "type": "select", "required": false, "optionSource": "dict-equipment-category" },
+                { "fieldKey": "workshopId", "label": "车间", "type": "select", "required": false, "optionSource": "dict-workshop" },
+                { "fieldKey": "status", "label": "运行状态", "type": "select", "required": false, "optionSource": "dict-equipment-status" }
+              ]
+            },
+            {
+              "sectionId": "equipment-table",
+              "sectionName": "列表区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "link", "sortable": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "sortable": true },
+                { "fieldKey": "categoryName", "label": "设备分类", "type": "tag", "sortable": true },
+                { "fieldKey": "workshopName", "label": "车间", "type": "text", "sortable": true },
+                { "fieldKey": "status", "label": "运行状态", "type": "status", "sortable": true },
+                { "fieldKey": "oee", "label": "OEE", "type": "percent", "sortable": true },
+                { "fieldKey": "nextMaintenanceDate", "label": "下次维护", "type": "date", "sortable": true }
+              ],
+              "actions": [
+                { "key": "create", "label": "新增设备", "type": "action", "location": "toolbar-left", "behavior": "navigate(/equipment/create)" },
+                { "key": "import", "label": "导入", "type": "action", "location": "toolbar-left", "behavior": "modal" },
+                { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" },
+                { "key": "view", "label": "查看", "type": "action", "location": "row", "behavior": "navigate(/equipment/:id)" },
+                { "key": "edit", "label": "编辑", "type": "action", "location": "row", "behavior": "navigate(/equipment/:id/edit)" },
+                { "key": "disable", "label": "停用", "type": "action", "location": "row-more", "behavior": "action" }
+              ]
+            }
+          ],
+          "actions": [],
+          "businessRules": [
+            "设备编号全局唯一",
+            "停用设备不显示在监控大屏"
+          ]
+        },
+        {
+          "pageId": "equipment-detail",
+          "pageName": "设备详情",
+          "path": "/equipment/:id",
+          "layout": "detail",
+          "filePath": "src/app/equipment/[id]/page.tsx",
+          "sections": [
+            {
+              "sectionId": "equipment-basic-info",
+              "sectionName": "基础信息区",
+              "type": "description",
+              "fields": [
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "text", "required": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "required": true },
+                { "fieldKey": "categoryName", "label": "设备分类", "type": "text", "required": true },
+                { "fieldKey": "workshopName", "label": "车间", "type": "text", "required": true },
+                { "fieldKey": "location", "label": "位置", "type": "text", "required": true },
+                { "fieldKey": "model", "label": "规格型号", "type": "text", "required": true },
+                { "fieldKey": "manufacturer", "label": "制造商", "type": "text", "required": false },
+                { "fieldKey": "manufactureDate", "label": "出厂日期", "type": "date", "required": false },
+                { "fieldKey": "commissionDate", "label": "投用日期", "type": "date", "required": true },
+                { "fieldKey": "purchasePrice", "label": "购置价格", "type": "money", "required": false },
+                { "fieldKey": "status", "label": "当前状态", "type": "status", "required": true },
+                { "fieldKey": "oee", "label": "当前OEE", "type": "percent", "required": true }
+              ]
+            },
+            {
+              "sectionId": "equipment-realtime-data",
+              "sectionName": "实时数据区",
+              "type": "card",
+              "fields": [
+                { "fieldKey": "runtimeStatus", "label": "运行状态", "type": "status", "required": true },
+                { "fieldKey": "loadRate", "label": "负载率", "type": "percent", "required": true },
+                { "fieldKey": "spindleTemperature", "label": "主轴温度", "type": "number", "required": true },
+                { "fieldKey": "runtimeHours", "label": "运行时间", "type": "number", "required": true },
+                { "fieldKey": "collectTime", "label": "采集时间", "type": "datetime", "required": true }
+              ]
+            },
+            {
+              "sectionId": "equipment-maintenance-history",
+              "sectionName": "维护历史区",
+              "type": "timeline"
+            },
+            {
+              "sectionId": "equipment-spare-parts",
+              "sectionName": "备件关联区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "spareName", "label": "备件名称", "type": "text" },
+                { "fieldKey": "spareNo", "label": "备件编号", "type": "text" },
+                { "fieldKey": "specification", "label": "规格", "type": "text" },
+                { "fieldKey": "safetyStock", "label": "安全库存", "type": "number" },
+                { "fieldKey": "currentStock", "label": "当前库存", "type": "number" }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "edit", "label": "编辑", "type": "action", "location": "card-header", "behavior": "navigate(/equipment/:id/edit)" },
+            { "key": "create-order", "label": "创建工单", "type": "action", "location": "card-header", "behavior": "navigate(/maintenance/workorders/create?equipmentId=:id)" },
+            { "key": "back", "label": "返回", "type": "action", "location": "card-footer", "behavior": "navigate(/equipment)" }
+          ],
+          "businessRules": [
+            "实时数据每5秒刷新一次",
+            "维护历史按时间倒序"
+          ]
+        },
+        {
+          "pageId": "equipment-create",
+          "pageName": "新增/编辑设备",
+          "path": "/equipment/create",
+          "layout": "form",
+          "filePath": "src/app/equipment/create/page.tsx",
+          "sections": [
+            {
+              "sectionId": "equipment-basic-form",
+              "sectionName": "基础信息",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "text", "required": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "required": true },
+                { "fieldKey": "categoryId", "label": "设备分类", "type": "select", "required": true, "optionSource": "dict-equipment-category" },
+                { "fieldKey": "workshopId", "label": "车间", "type": "select", "required": true, "optionSource": "dict-workshop" },
+                { "fieldKey": "location", "label": "位置", "type": "text", "required": true },
+                { "fieldKey": "model", "label": "规格型号", "type": "text", "required": true },
+                { "fieldKey": "manufacturer", "label": "制造商", "type": "text", "required": false },
+                { "fieldKey": "manufactureDate", "label": "出厂日期", "type": "date", "required": false },
+                { "fieldKey": "commissionDate", "label": "投用日期", "type": "date", "required": true },
+                { "fieldKey": "purchasePrice", "label": "购置价格", "type": "money", "required": false },
+                { "fieldKey": "siemensModel", "label": "西门子系统型号", "type": "text", "required": false },
+                { "fieldKey": "images", "label": "设备图片", "type": "upload", "required": false }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "save", "label": "保存", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "save-and-continue", "label": "保存并继续", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "cancel", "label": "取消", "type": "action", "location": "form-footer", "behavior": "navigate(/equipment)" }
+          ],
+          "businessRules": [
+            "设备编号格式：EQ+年月+4位流水（如EQ26030001）",
+            "投用日期不能晚于当前日期"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "Equipment",
+        "fields": [
+          { "key": "id", "tsType": "string", "optional": false },
+          { "key": "equipmentNo", "tsType": "string", "optional": false },
+          { "key": "equipmentName", "tsType": "string", "optional": false },
+          { "key": "categoryId", "tsType": "string", "optional": false },
+          { "key": "categoryName", "tsType": "string", "optional": false },
+          { "key": "workshopId", "tsType": "string", "optional": false },
+          { "key": "workshopName", "tsType": "string", "optional": false },
+          { "key": "location", "tsType": "string", "optional": false },
+          { "key": "model", "tsType": "string", "optional": false },
+          { "key": "manufacturer", "tsType": "string", "optional": true },
+          { "key": "manufactureDate", "tsType": "string", "optional": true },
+          { "key": "commissionDate", "tsType": "string", "optional": false },
+          { "key": "purchasePrice", "tsType": "number", "optional": true },
+          { "key": "siemensModel", "tsType": "string", "optional": true },
+          { "key": "status", "tsType": "EquipmentStatus", "optional": false },
+          { "key": "oee", "tsType": "number", "optional": false },
+          { "key": "nextMaintenanceDate", "tsType": "string", "optional": true }
+        ],
+        "statusEnums": {
+          "EquipmentStatus": ["running", "stopped", "fault", "disabled"]
+        }
+      },
+      "mockDataRequirements": {
+        "entityName": "equipment",
+        "recordCount": 20,
+        "fieldKeys": ["id", "equipmentNo", "equipmentName", "categoryName", "workshopName", "status", "oee", "nextMaintenanceDate"],
+        "statusValues": ["running", "stopped", "fault"]
+      },
+      "filesToGenerate": [
+        "src/types/equipment.ts",
+        "src/mock/equipment.ts",
+        "src/components/equipment/equipment-table.tsx",
+        "src/components/equipment/equipment-form.tsx",
+        "src/components/equipment/equipment-filter.tsx",
+        "src/components/equipment/equipment-detail.tsx",
+        "src/app/equipment/page.tsx",
+        "src/app/equipment/[id]/page.tsx",
+        "src/app/equipment/create/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "maintenance-plans",
+      "moduleName": "维护计划",
+      "routeBase": "/maintenance/plans",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "maintenance-plans-list",
+          "pageName": "维护计划列表",
+          "path": "/maintenance/plans",
+          "layout": "list",
+          "filePath": "src/app/maintenance/plans/page.tsx",
+          "sections": [
+            {
+              "sectionId": "plan-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "text", "required": false },
+                { "fieldKey": "status", "label": "计划状态", "type": "select", "required": false, "optionSource": "dict-plan-status" },
+                { "fieldKey": "planType", "label": "计划类型", "type": "select", "required": false, "optionSource": "dict-plan-type" }
+              ]
+            },
+            {
+              "sectionId": "plan-table",
+              "sectionName": "列表区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "planNo", "label": "计划编号", "type": "link", "sortable": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "sortable": true },
+                { "fieldKey": "planType", "label": "计划类型", "type": "tag", "sortable": true },
+                { "fieldKey": "cycle", "label": "计划周期", "type": "text", "sortable": true },
+                { "fieldKey": "executeTime", "label": "执行时间", "type": "datetime", "sortable": true },
+                { "fieldKey": "status", "label": "状态", "type": "status", "sortable": true },
+                { "fieldKey": "assigneeName", "label": "负责人", "type": "text", "sortable": true }
+              ],
+              "actions": [
+                { "key": "create", "label": "新建计划", "type": "action", "location": "toolbar-left", "behavior": "navigate(/maintenance/plans/create)" },
+                { "key": "batch-generate", "label": "批量生成", "type": "action", "location": "toolbar-left", "behavior": "modal" },
+                { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" },
+                { "key": "view", "label": "查看", "type": "action", "location": "row", "behavior": "navigate(/maintenance/plans/:id)" },
+                { "key": "edit", "label": "编辑", "type": "action", "location": "row", "behavior": "navigate(/maintenance/plans/:id/edit)" },
+                { "key": "delete", "label": "删除", "type": "action", "location": "row-more", "behavior": "action" }
+              ]
+            }
+          ],
+          "actions": [],
+          "businessRules": [
+            "系统每天自动扫描计划，到期生成工单",
+            "设备停用时自动暂停计划"
+          ]
+        },
+        {
+          "pageId": "maintenance-plans-create",
+          "pageName": "新增/编辑维护计划",
+          "path": "/maintenance/plans/create",
+          "layout": "form",
+          "filePath": "src/app/maintenance/plans/create/page.tsx",
+          "sections": [
+            {
+              "sectionId": "plan-basic-form",
+              "sectionName": "计划信息",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "planNo", "label": "计划编号", "type": "text", "required": true },
+                { "fieldKey": "equipmentId", "label": "设备", "type": "select", "required": true, "optionSource": "equipment" },
+                { "fieldKey": "planType", "label": "计划类型", "type": "select", "required": true, "optionSource": "dict-plan-type" },
+                { "fieldKey": "cycle", "label": "计划周期", "type": "select", "required": true, "optionSource": "dict-plan-cycle" },
+                { "fieldKey": "cycleValue", "label": "周期数值", "type": "number", "required": true },
+                { "fieldKey": "firstExecuteTime", "label": "首次执行", "type": "datetime", "required": true },
+                { "fieldKey": "assigneeId", "label": "负责人", "type": "select", "required": true, "optionSource": "users-maintenance-engineer" },
+                { "fieldKey": "description", "label": "计划说明", "type": "textarea", "required": false }
+              ]
+            },
+            {
+              "sectionId": "plan-items-form",
+              "sectionName": "维护内容",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "itemName", "label": "维护项名称", "type": "text", "required": true },
+                { "fieldKey": "itemDescription", "label": "维护项说明", "type": "textarea", "required": false },
+                { "fieldKey": "required", "label": "是否必做", "type": "switch", "required": true }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "save", "label": "保存", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "cancel", "label": "取消", "type": "action", "location": "form-footer", "behavior": "navigate(/maintenance/plans)" }
+          ],
+          "businessRules": [
+            "计划编号格式：MP+年月+4位流水",
+            "周期类型：按时间（日/周/月）或按运行时间（小时）"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "MaintenancePlan",
+        "fields": [
+          { "key": "id", "tsType": "string", "optional": false },
+          { "key": "planNo", "tsType": "string", "optional": false },
+          { "key": "equipmentId", "tsType": "string", "optional": false },
+          { "key": "equipmentName", "tsType": "string", "optional": false },
+          { "key": "planType", "tsType": "PlanType", "optional": false },
+          { "key": "cycle", "tsType": "PlanCycle", "optional": false },
+          { "key": "cycleValue", "tsType": "number", "optional": false },
+          { "key": "executeTime", "tsType": "string", "optional": false },
+          { "key": "status", "tsType": "PlanStatus", "optional": false },
+          { "key": "assigneeId", "tsType": "string", "optional": false },
+          { "key": "assigneeName", "tsType": "string", "optional": false },
+          { "key": "description", "tsType": "string", "optional": true }
+        ],
+        "statusEnums": {
+          "PlanStatus": ["pending", "running", "completed", "skipped"],
+          "PlanType": ["maintenance", "overhaul", "calibration"],
+          "PlanCycle": ["day", "week", "month", "hour"]
+        }
+      },
+      "mockDataRequirements": {
+        "entityName": "maintenancePlan",
+        "recordCount": 15,
+        "fieldKeys": ["id", "planNo", "equipmentName", "planType", "cycle", "executeTime", "status", "assigneeName"],
+        "statusValues": ["pending", "running", "completed"]
+      },
+      "filesToGenerate": [
+        "src/types/maintenance-plan.ts",
+        "src/mock/maintenance-plan.ts",
+        "src/components/maintenance/plan-table.tsx",
+        "src/components/maintenance/plan-form.tsx",
+        "src/components/maintenance/plan-filter.tsx",
+        "src/app/maintenance/plans/page.tsx",
+        "src/app/maintenance/plans/create/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "workorders",
+      "moduleName": "维修工单",
+      "routeBase": "/maintenance/workorders",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "workorders-list",
+          "pageName": "维修工单列表",
+          "path": "/maintenance/workorders",
+          "layout": "list",
+          "filePath": "src/app/maintenance/workorders/page.tsx",
+          "sections": [
+            {
+              "sectionId": "workorder-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "workOrderNo", "label": "工单编号", "type": "text", "required": false },
+                { "fieldKey": "equipmentNo", "label": "设备编号", "type": "text", "required": false },
+                { "fieldKey": "status", "label": "工单状态", "type": "select", "required": false, "optionSource": "dict-workorder-status" },
+                { "fieldKey": "orderType", "label": "工单类型", "type": "select", "required": false, "optionSource": "dict-order-type" },
+                { "fieldKey": "assigneeId", "label": "负责人", "type": "select", "required": false, "optionSource": "users" }
+              ]
+            },
+            {
+              "sectionId": "workorder-table",
+              "sectionName": "列表区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "workOrderNo", "label": "工单编号", "type": "link", "sortable": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "sortable": true },
+                { "fieldKey": "orderType", "label": "工单类型", "type": "tag", "sortable": true },
+                { "fieldKey": "faultDescription", "label": "故障描述", "type": "text", "sortable": false },
+                { "fieldKey": "priority", "label": "紧急程度", "type": "status", "sortable": true },
+                { "fieldKey": "status", "label": "状态", "type": "status", "sortable": true },
+                { "fieldKey": "assigneeName", "label": "负责人", "type": "text", "sortable": true },
+                { "fieldKey": "createTime", "label": "创建时间", "type": "datetime", "sortable": true },
+                { "fieldKey": "completeTime", "label": "完成时间", "type": "datetime", "sortable": true }
+              ],
+              "actions": [
+                { "key": "create", "label": "新建工单", "type": "action", "location": "toolbar-left", "behavior": "navigate(/maintenance/workorders/create)" },
+                { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" },
+                { "key": "view", "label": "查看", "type": "action", "location": "row", "behavior": "navigate(/maintenance/workorders/:id)" },
+                { "key": "accept", "label": "接单", "type": "action", "location": "row-more", "behavior": "action" },
+                { "key": "complete", "label": "完成", "type": "action", "location": "row-more", "behavior": "action" }
+              ]
+            }
+          ],
+          "actions": [],
+          "businessRules": [
+            "待派工状态可编辑和删除",
+            "工单按紧急程度和创建时间排序"
+          ]
+        },
+        {
+          "pageId": "workorders-create",
+          "pageName": "新增/编辑维修工单",
+          "path": "/maintenance/workorders/create",
+          "layout": "form",
+          "filePath": "src/app/maintenance/workorders/create/page.tsx",
+          "sections": [
+            {
+              "sectionId": "workorder-basic-form",
+              "sectionName": "工单信息",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "workOrderNo", "label": "工单编号", "type": "text", "required": true },
+                { "fieldKey": "equipmentId", "label": "设备", "type": "select", "required": true, "optionSource": "equipment" },
+                { "fieldKey": "orderType", "label": "工单类型", "type": "select", "required": true, "optionSource": "dict-order-type" },
+                { "fieldKey": "priority", "label": "紧急程度", "type": "select", "required": true, "optionSource": "dict-priority" },
+                { "fieldKey": "planId", "label": "关联计划", "type": "select", "required": false, "optionSource": "maintenance-plans" },
+                { "fieldKey": "faultDescription", "label": "故障描述", "type": "textarea", "required": true },
+                { "fieldKey": "assigneeId", "label": "负责人", "type": "select", "required": true, "optionSource": "users-maintenance-engineer" },
+                { "fieldKey": "expectCompleteTime", "label": "期望完成时间", "type": "datetime", "required": true },
+                { "fieldKey": "attachments", "label": "附件", "type": "upload", "required": false }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "save", "label": "保存", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "save-and-dispatch", "label": "保存并派工", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "cancel", "label": "取消", "type": "action", "location": "form-footer", "behavior": "navigate(/maintenance/workorders)" }
+          ],
+          "businessRules": [
+            "工单编号格式：WO+年月+4位流水",
+            "计划维护类工单由系统自动生成"
+          ]
+        },
+        {
+          "pageId": "workorders-detail",
+          "pageName": "工单详情",
+          "path": "/maintenance/workorders/:id",
+          "layout": "detail",
+          "filePath": "src/app/maintenance/workorders/[id]/page.tsx",
+          "sections": [
+            {
+              "sectionId": "workorder-info",
+              "sectionName": "工单信息",
+              "type": "description",
+              "fields": [
+                { "fieldKey": "workOrderNo", "label": "工单编号", "type": "text", "required": true },
+                { "fieldKey": "equipmentName", "label": "设备名称", "type": "text", "required": true },
+                { "fieldKey": "orderType", "label": "工单类型", "type": "text", "required": true },
+                { "fieldKey": "priority", "label": "紧急程度", "type": "status", "required": true },
+                { "fieldKey": "status", "label": "状态", "type": "status", "required": true },
+                { "fieldKey": "faultDescription", "label": "故障描述", "type": "textarea", "required": true },
+                { "fieldKey": "assigneeName", "label": "负责人", "type": "text", "required": true },
+                { "fieldKey": "createTime", "label": "创建时间", "type": "datetime", "required": true },
+                { "fieldKey": "expectCompleteTime", "label": "期望完成时间", "type": "datetime", "required": true },
+                { "fieldKey": "actualCompleteTime", "label": "实际完成时间", "type": "datetime", "required": false }
+              ]
+            },
+            {
+              "sectionId": "workorder-timeline",
+              "sectionName": "处理记录",
+              "type": "timeline"
+            }
+          ],
+          "actions": [
+            { "key": "edit", "label": "编辑", "type": "action", "location": "card-header", "behavior": "navigate(/maintenance/workorders/:id/edit)" },
+            { "key": "add-record", "label": "添加记录", "type": "action", "location": "card-header", "behavior": "modal" },
+            { "key": "start", "label": "开始执行", "type": "action", "location": "card-footer", "behavior": "action" },
+            { "key": "submit-verify", "label": "提交验收", "type": "action", "location": "card-footer", "behavior": "action" },
+            { "key": "verify-pass", "label": "验收通过", "type": "action", "location": "card-footer", "behavior": "action" },
+            { "key": "back", "label": "返回", "type": "action", "location": "card-footer", "behavior": "navigate(/maintenance/workorders)" }
+          ],
+          "businessRules": [
+            "只有负责人可以开始执行和提交验收",
+            "只有设备管理员可以验收通过"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "WorkOrder",
+        "fields": [
+          { "key": "id", "tsType": "string", "optional": false },
+          { "key": "workOrderNo", "tsType": "string", "optional": false },
+          { "key": "equipmentId", "tsType": "string", "optional": false },
+          { "key": "equipmentName", "tsType": "string", "optional": false },
+          { "key": "orderType", "tsType": "OrderType", "optional": false },
+          { "key": "priority", "tsType": "Priority", "optional": false },
+          { "key": "planId", "tsType": "string", "optional": true },
+          { "key": "faultDescription", "tsType": "string", "optional": false },
+          { "key": "assigneeId", "tsType": "string", "optional": false },
+          { "key": "assigneeName", "tsType": "string", "optional": false },
+          { "key": "status", "tsType": "WorkOrderStatus", "optional": false },
+          { "key": "createTime", "tsType": "string", "optional": false },
+          { "key": "expectCompleteTime", "tsType": "string", "optional": false },
+          { "key": "actualCompleteTime", "tsType": "string", "optional": true }
+        ],
+        "statusEnums": {
+          "WorkOrderStatus": ["pending", "assigned", "processing", "verifying", "completed", "cancelled"],
+          "OrderType": ["planned", "breakdown"],
+          "Priority": ["high", "medium", "low"]
+        }
+      },
+      "mockDataRequirements": {
+        "entityName": "workOrder",
+        "recordCount": 25,
+        "fieldKeys": ["id", "workOrderNo", "equipmentName", "orderType", "priority", "status", "assigneeName", "createTime"],
+        "statusValues": ["pending", "assigned", "processing", "verifying", "completed"]
+      },
+      "filesToGenerate": [
+        "src/types/work-order.ts",
+        "src/mock/work-order.ts",
+        "src/components/maintenance/workorder-table.tsx",
+        "src/components/maintenance/workorder-form.tsx",
+        "src/components/maintenance/workorder-filter.tsx",
+        "src/components/maintenance/workorder-detail.tsx",
+        "src/app/maintenance/workorders/page.tsx",
+        "src/app/maintenance/workorders/create/page.tsx",
+        "src/app/maintenance/workorders/[id]/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "spares",
+      "moduleName": "备件管理",
+      "routeBase": "/spares",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "spares-list",
+          "pageName": "备件台账列表",
+          "path": "/spares",
+          "layout": "list",
+          "filePath": "src/app/spares/page.tsx",
+          "sections": [
+            {
+              "sectionId": "spare-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "spareNo", "label": "备件编号", "type": "text", "required": false },
+                { "fieldKey": "spareName", "label": "备件名称", "type": "text", "required": false },
+                { "fieldKey": "categoryId", "label": "备件分类", "type": "select", "required": false, "optionSource": "dict-spare-category" },
+                { "fieldKey": "stockStatus", "label": "库存状态", "type": "select", "required": false, "optionSource": "dict-stock-status" }
+              ]
+            },
+            {
+              "sectionId": "spare-table",
+              "sectionName": "列表区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "spareNo", "label": "备件编号", "type": "link", "sortable": true },
+                { "fieldKey": "spareName", "label": "备件名称", "type": "text", "sortable": true },
+                { "fieldKey": "categoryName", "label": "备件分类", "type": "tag", "sortable": true },
+                { "fieldKey": "specification", "label": "规格", "type": "text", "sortable": true },
+                { "fieldKey": "currentStock", "label": "当前库存", "type": "number", "sortable": true },
+                { "fieldKey": "safetyStock", "label": "安全库存", "type": "number", "sortable": true },
+                { "fieldKey": "stockStatus", "label": "库存状态", "type": "status", "sortable": true },
+                { "fieldKey": "unitPrice", "label": "单价", "type": "money", "sortable": true }
+              ],
+              "actions": [
+                { "key": "create", "label": "新增备件", "type": "action", "location": "toolbar-left", "behavior": "navigate(/spares/create)" },
+                { "key": "import", "label": "导入", "type": "action", "location": "toolbar-left", "behavior": "modal" },
+                { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" },
+                { "key": "view", "label": "查看", "type": "action", "location": "row", "behavior": "navigate(/spares/:id)" },
+                { "key": "edit", "label": "编辑", "type": "action", "location": "row", "behavior": "navigate(/spares/:id/edit)" },
+                { "key": "inbound", "label": "入库", "type": "action", "location": "row-more", "behavior": "modal" },
+                { "key": "outbound", "label": "出库", "type": "action", "location": "row-more", "behavior": "modal" }
+              ]
+            }
+          ],
+          "actions": [],
+          "businessRules": [
+            "库存状态自动计算：当前库存<安全库存为预警，=0为缺货",
+            "出库时库存不足则提示"
+          ]
+        },
+        {
+          "pageId": "spares-create",
+          "pageName": "新增/编辑备件",
+          "path": "/spares/create",
+          "layout": "form",
+          "filePath": "src/app/spares/create/page.tsx",
+          "sections": [
+            {
+              "sectionId": "spare-basic-form",
+              "sectionName": "备件信息",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "spareNo", "label": "备件编号", "type": "text", "required": true },
+                { "fieldKey": "spareName", "label": "备件名称", "type": "text", "required": true },
+                { "fieldKey": "categoryId", "label": "备件分类", "type": "select", "required": true, "optionSource": "dict-spare-category" },
+                { "fieldKey": "specification", "label": "规格", "type": "text", "required": false },
+                { "fieldKey": "model", "label": "型号", "type": "text", "required": false },
+                { "fieldKey": "brand", "label": "品牌", "type": "text", "required": false },
+                { "fieldKey": "unit", "label": "单位", "type": "select", "required": true, "optionSource": "dict-unit" },
+                { "fieldKey": "unitPrice", "label": "单价", "type": "money", "required": true },
+                { "fieldKey": "safetyStock", "label": "安全库存", "type": "number", "required": true },
+                { "fieldKey": "currentStock", "label": "当前库存", "type": "number", "required": true },
+                { "fieldKey": "supplier", "label": "供应商", "type": "text", "required": false },
+                { "fieldKey": "equipmentIds", "label": "关联设备", "type": "multiselect", "required": false, "optionSource": "equipment" }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "save", "label": "保存", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "cancel", "label": "取消", "type": "action", "location": "form-footer", "behavior": "navigate(/spares)" }
+          ],
+          "businessRules": [
+            "备件编号格式：SP+年月+4位流水"
+          ]
+        },
+        {
+          "pageId": "spares-alerts",
+          "pageName": "库存预警列表",
+          "path": "/spares/alerts",
+          "layout": "list",
+          "filePath": "src/app/spares/alerts/page.tsx",
+          "sections": [
+            {
+              "sectionId": "spare-alert-table",
+              "sectionName": "列表区",
+              "type": "table",
+              "columns": [
+                { "fieldKey": "spareName", "label": "备件名称", "type": "link", "sortable": true },
+                { "fieldKey": "spareNo", "label": "备件编号", "type": "text", "sortable": true },
+                { "fieldKey": "currentStock", "label": "当前库存", "type": "number", "sortable": true },
+                { "fieldKey": "safetyStock", "label": "安全库存", "type": "number", "sortable": true },
+                { "fieldKey": "gap", "label": "缺口数量", "type": "number", "sortable": true },
+                { "fieldKey": "alertLevel", "label": "预警级别", "type": "status", "sortable": true },
+                { "fieldKey": "lastOutTime", "label": "最近出库", "type": "datetime", "sortable": true }
+              ],
+              "actions": [
+                { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" },
+                { "key": "generate-purchase", "label": "生成采购单", "type": "action", "location": "row-more", "behavior": "action" }
+              ]
+            }
+          ],
+          "actions": [],
+          "businessRules": [
+            "只显示当前库存≤安全库存的备件",
+            "按缺口数量降序排列"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "Spare",
+        "fields": [
+          { "key": "id", "tsType": "string", "optional": false },
+          { "key": "spareNo", "tsType": "string", "optional": false },
+          { "key": "spareName", "tsType": "string", "optional": false },
+          { "key": "categoryId", "tsType": "string", "optional": false },
+          { "key": "categoryName", "tsType": "string", "optional": false },
+          { "key": "specification", "tsType": "string", "optional": true },
+          { "key": "model", "tsType": "string", "optional": true },
+          { "key": "brand", "tsType": "string", "optional": true },
+          { "key": "unit", "tsType": "string", "optional": false },
+          { "key": "unitPrice", "tsType": "number", "optional": false },
+          { "key": "safetyStock", "tsType": "number", "optional": false },
+          { "key": "currentStock", "tsType": "number", "optional": false },
+          { "key": "stockStatus", "tsType": "StockStatus", "optional": false },
+          { "key": "supplier", "tsType": "string", "optional": true },
+          { "key": "equipmentIds", "tsType": "string[]", "optional": true }
+        ],
+        "statusEnums": {
+          "StockStatus": ["normal", "warning", "outofstock"]
+        }
+      },
+      "mockDataRequirements": {
+        "entityName": "spare",
+        "recordCount": 30,
+        "fieldKeys": ["id", "spareNo", "spareName", "categoryName", "specification", "currentStock", "safetyStock", "stockStatus"],
+        "statusValues": ["normal", "warning", "outofstock"]
+      },
+      "filesToGenerate": [
+        "src/types/spare.ts",
+        "src/mock/spare.ts",
+        "src/components/spares/spare-table.tsx",
+        "src/components/spares/spare-form.tsx",
+        "src/components/spares/spare-filter.tsx",
+        "src/app/spares/page.tsx",
+        "src/app/spares/create/page.tsx",
+        "src/app/spares/alerts/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "analytics-performance",
+      "moduleName": "设备绩效分析",
+      "routeBase": "/analytics/performance",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "analytics-performance",
+          "pageName": "设备绩效分析",
+          "path": "/analytics/performance",
+          "layout": "dashboard",
+          "filePath": "src/app/analytics/performance/page.tsx",
+          "sections": [
+            {
+              "sectionId": "performance-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "dateRange", "label": "时间范围", "type": "daterange", "required": true },
+                { "fieldKey": "equipmentId", "label": "设备", "type": "select", "required": false, "optionSource": "equipment" },
+                { "fieldKey": "workshopId", "label": "车间", "type": "select", "required": false, "optionSource": "dict-workshop" }
+              ]
+            },
+            {
+              "sectionId": "performance-statistic",
+              "sectionName": "汇总统计",
+              "type": "statistic",
+              "fields": [
+                { "fieldKey": "avgOEE", "label": "平均OEE", "type": "percent", "required": true },
+                { "fieldKey": "avgFaultRate", "label": "平均故障率", "type": "percent", "required": true },
+                { "fieldKey": "avgDowntime", "label": "平均停机时间", "type": "number", "required": true }
+              ]
+            },
+            {
+              "sectionId": "performance-chart-oee",
+              "sectionName": "OEE趋势",
+              "type": "chart",
+              "charts": [
+                {
+                  "chartId": "oee-trend",
+                  "chartType": "line",
+                  "title": "OEE趋势",
+                  "timeDimension": "选定时间范围",
+                  "metric": "小时级/日级OEE"
+                }
+              ]
+            },
+            {
+              "sectionId": "performance-cards",
+              "sectionName": "设备排名",
+              "type": "cards",
+              "cards": [
+                { "cardId": "oee-top5", "title": "OEE TOP5", "dataSource": "OEE降序", "type": "list" },
+                { "cardId": "oee-bottom5", "title": "OEE BOTTOM5", "dataSource": "OEE升序", "type": "list" },
+                { "cardId": "fault-top5", "title": "故障次数TOP5", "dataSource": "故障次数降序", "type": "list" }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "refresh", "label": "刷新", "type": "action", "location": "toolbar-right", "behavior": "action" },
+            { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" }
+          ],
+          "businessRules": [
+            "OEE = 可用率×性能效率×质量指数",
+            "默认按日聚合，时间范围超过30天时按周聚合"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "PerformanceAnalytics",
+        "fields": [
+          { "key": "dateRange", "tsType": "[string, string]", "optional": false },
+          { "key": "equipmentId", "tsType": "string", "optional": true },
+          { "key": "workshopId", "tsType": "string", "optional": true },
+          { "key": "avgOEE", "tsType": "number", "optional": false },
+          { "key": "avgFaultRate", "tsType": "number", "optional": false },
+          { "key": "avgDowntime", "tsType": "number", "optional": false }
+        ]
+      },
+      "mockDataRequirements": null,
+      "filesToGenerate": [
+        "src/components/analytics/performance-dashboard.tsx",
+        "src/app/analytics/performance/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "analytics-maintenance",
+      "moduleName": "维护分析",
+      "routeBase": "/analytics/maintenance",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "analytics-maintenance",
+          "pageName": "维护分析",
+          "path": "/analytics/maintenance",
+          "layout": "dashboard",
+          "filePath": "src/app/analytics/maintenance/page.tsx",
+          "sections": [
+            {
+              "sectionId": "maintenance-filter",
+              "sectionName": "筛选区",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "dateRange", "label": "时间范围", "type": "daterange", "required": true },
+                { "fieldKey": "workshopId", "label": "车间", "type": "select", "required": false, "optionSource": "dict-workshop" }
+              ]
+            },
+            {
+              "sectionId": "maintenance-statistic",
+              "sectionName": "汇总统计",
+              "type": "statistic",
+              "fields": [
+                { "fieldKey": "totalCost", "label": "总维护成本", "type": "money", "required": true },
+                { "fieldKey": "planExecuteRate", "label": "计划执行率", "type": "percent", "required": true },
+                { "fieldKey": "avgResponseTime", "label": "平均响应时间", "type": "number", "required": true },
+                { "fieldKey": "avgRepairTime", "label": "平均修复时间", "type": "number", "required": true }
+              ]
+            },
+            {
+              "sectionId": "maintenance-chart-cost",
+              "sectionName": "维护成本趋势",
+              "type": "chart",
+              "charts": [
+                {
+                  "chartId": "cost-trend",
+                  "chartType": "bar",
+                  "title": "维护成本趋势",
+                  "timeDimension": "按月",
+                  "metric": "月度维护成本（备件成本+人工成本）"
+                }
+              ]
+            },
+            {
+              "sectionId": "maintenance-chart-execution",
+              "sectionName": "计划执行率",
+              "type": "chart",
+              "charts": [
+                {
+                  "chartId": "plan-execution-rate",
+                  "chartType": "pie",
+                  "title": "计划执行率",
+                  "categories": ["按时完成", "延期完成", "未执行", "跳过"]
+                }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "refresh", "label": "刷新", "type": "action", "location": "toolbar-right", "behavior": "action" },
+            { "key": "export", "label": "导出", "type": "action", "location": "toolbar-right", "behavior": "download" }
+          ],
+          "businessRules": [
+            "维护成本 = 备件出库成本 + 工时×人工时薪",
+            "响应时间 = 工单派工时间 - 工单创建时间",
+            "修复时间 = 工单完成时间 - 工单开始执行时间"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "MaintenanceAnalytics",
+        "fields": [
+          { "key": "dateRange", "tsType": "[string, string]", "optional": false },
+          { "key": "workshopId", "tsType": "string", "optional": true },
+          { "key": "totalCost", "tsType": "number", "optional": false },
+          { "key": "planExecuteRate", "tsType": "number", "optional": false },
+          { "key": "avgResponseTime", "tsType": "number", "optional": false },
+          { "key": "avgRepairTime", "tsType": "number", "optional": false }
+        ]
+      },
+      "mockDataRequirements": null,
+      "filesToGenerate": [
+        "src/components/analytics/maintenance-dashboard.tsx",
+        "src/app/analytics/maintenance/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "settings-basis",
+      "moduleName": "基础数据管理",
+      "routeBase": "/settings/basis",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "settings-basis",
+          "pageName": "基础数据管理",
+          "path": "/settings/basis",
+          "layout": "custom",
+          "filePath": "src/app/settings/basis/page.tsx",
+          "sections": [
+            {
+              "sectionId": "basis-tabs",
+              "sectionName": "字典导航",
+              "type": "tabs",
+              "tabs": [
+                { "tabId": "equipment-category", "tabName": "设备分类" },
+                { "tabId": "workshop", "tabName": "车间列表" },
+                { "tabId": "fault-type", "tabName": "故障类型" },
+                { "tabId": "spare-category", "tabName": "备件分类" }
+              ]
+            },
+            {
+              "sectionId": "equipment-category-form",
+              "sectionName": "设备分类",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "name", "label": "分类名称", "type": "text", "required": true },
+                { "fieldKey": "parentId", "label": "上级分类", "type": "treeselect", "required": false },
+                { "fieldKey": "sort", "label": "排序", "type": "number", "required": true }
+              ]
+            },
+            {
+              "sectionId": "workshop-form",
+              "sectionName": "车间列表",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "name", "label": "车间名称", "type": "text", "required": true },
+                { "fieldKey": "code", "label": "车间编码", "type": "text", "required": true },
+                { "fieldKey": "managerId", "label": "负责人", "type": "select", "required": false, "optionSource": "users" }
+              ]
+            },
+            {
+              "sectionId": "fault-type-form",
+              "sectionName": "故障类型",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "name", "label": "故障类型名称", "type": "text", "required": true },
+                { "fieldKey": "sort", "label": "排序", "type": "number", "required": true }
+              ]
+            },
+            {
+              "sectionId": "spare-category-form",
+              "sectionName": "备件分类",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "name", "label": "分类名称", "type": "text", "required": true },
+                { "fieldKey": "parentId", "label": "上级分类", "type": "treeselect", "required": false },
+                { "fieldKey": "sort", "label": "排序", "type": "number", "required": true }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "add", "label": "新增", "type": "action", "location": "card-header", "behavior": "modal" },
+            { "key": "edit", "label": "编辑", "type": "action", "location": "row", "behavior": "modal" },
+            { "key": "delete", "label": "删除", "type": "action", "location": "row-more", "behavior": "action" }
+          ],
+          "businessRules": [
+            "删除分类前需检查是否有关联数据",
+            "车间编码全局唯一"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "BasisData",
+        "fields": [
+          { "key": "id", "tsType": "string", "optional": false },
+          { "key": "name", "tsType": "string", "optional": false },
+          { "key": "parentId", "tsType": "string", "optional": true },
+          { "key": "sort", "tsType": "number", "optional": false }
+        ]
+      },
+      "mockDataRequirements": null,
+      "filesToGenerate": [
+        "src/components/settings/basis-data-manager.tsx",
+        "src/app/settings/basis/page.tsx"
+      ]
+    },
+    {
+      "moduleId": "settings-integration",
+      "moduleName": "西门子集成配置",
+      "routeBase": "/settings/integration",
+      "inferred": false,
+      "action": "create",
+      "locked": false,
+      "pages": [
+        {
+          "pageId": "settings-integration",
+          "pageName": "西门子集成配置",
+          "path": "/settings/integration",
+          "layout": "form",
+          "filePath": "src/app/settings/integration/page.tsx",
+          "sections": [
+            {
+              "sectionId": "integration-connection-form",
+              "sectionName": "连接配置",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "protocol", "label": "协议类型", "type": "select", "required": true, "optionSource": "dict-protocol" },
+                { "fieldKey": "serverHost", "label": "服务器地址", "type": "text", "required": true },
+                { "fieldKey": "serverPort", "label": "服务器端口", "type": "number", "required": true },
+                { "fieldKey": "username", "label": "用户名", "type": "text", "required": true },
+                { "fieldKey": "password", "label": "密码", "type": "password", "required": true },
+                { "fieldKey": "collectInterval", "label": "采集频率", "type": "number", "required": true }
+              ]
+            },
+            {
+              "sectionId": "integration-tags-form",
+              "sectionName": "采集点位配置",
+              "type": "form",
+              "fields": [
+                { "fieldKey": "tagName", "label": "点位名称", "type": "text", "required": true },
+                { "fieldKey": "tagAddress", "label": "点位地址", "type": "text", "required": true },
+                { "fieldKey": "dataType", "label": "数据类型", "type": "select", "required": true, "optionSource": "dict-datatype" },
+                { "fieldKey": "equipmentId", "label": "采集设备", "type": "select", "required": true, "optionSource": "equipment" }
+              ]
+            }
+          ],
+          "actions": [
+            { "key": "test-connection", "label": "测试连接", "type": "action", "location": "card-footer", "behavior": "action" },
+            { "key": "save", "label": "保存", "type": "action", "location": "form-footer", "behavior": "action" },
+            { "key": "cancel", "label": "取消", "type": "action", "location": "form-footer", "behavior": "navigate(/settings)" }
+          ],
+          "businessRules": [
+            "保存前需测试连接成功",
+            "修改采集频率后立即生效"
+          ]
+        }
+      ],
+      "typeDefinition": {
+        "interfaceName": "IntegrationConfig",
+        "fields": [
+          { "key": "protocol", "tsType": "string", "optional": false },
+          { "key": "serverHost", "tsType": "string", "optional": false },
+          { "key": "serverPort", "tsType": "number", "optional": false },
+          { "key": "username", "tsType": "string", "optional": false },
+          { "key": "password", "tsType": "string", "optional": false },
+          { "key": "collectInterval", "tsType": "number", "optional": false }
+        ]
+      },
+      "mockDataRequirements": null,
+      "filesToGenerate": [
+        "src/types/integration.ts",
+        "src/components/settings/integration-form.tsx",
+        "src/app/settings/integration/page.tsx"
+      ]
+    }
+  ],
+  "dashboard": {
+    "route": "/dashboard",
+    "filePath": "src/app/dashboard/page.tsx",
+    "layout": "dashboard",
+    "sections": [
+      {
+        "sectionId": "dashboard-stats",
+        "sectionName": "全局状态区",
+        "type": "statistic",
+        "fields": [
+          { "fieldKey": "totalDevices", "label": "设备总数", "type": "number" },
+          { "fieldKey": "runningCount", "label": "运行中", "type": "number" },
+          { "fieldKey": "stoppedCount", "label": "停机", "type": "number" },
+          { "fieldKey": "faultCount", "label": "故障", "type": "number" },
+          { "fieldKey": "overallOEE", "label": "综合OEE", "type": "percent" }
+        ]
+      },
+      {
+        "sectionId": "dashboard-map",
+        "sectionName": "分区状态区",
+        "type": "chart",
+        "charts": [
+          {
+            "chartId": "workshop-map",
+            "chartType": "map",
+            "title": "车间设备分布",
+            "description": "按车间/产线展示设备位置和运行状态"
+          }
+        ]
+      },
+      {
+        "sectionId": "dashboard-cards",
+        "sectionName": "关键指标区",
+        "type": "cards",
+        "cards": [
+          {
+            "cardId": "top5-fault",
+            "title": "TOP5故障设备",
+            "dataSource": "故障次数统计",
+            "type": "list"
+          },
+          {
+            "cardId": "top5-inefficient",
+            "title": "TOP5低效设备",
+            "dataSource": "OEE倒序",
+            "type": "list"
+          },
+          {
+            "cardId": "plan-execute-rate",
+            "title": "维护计划执行率",
+            "dataSource": "本月已完成计划/总计划",
+            "type": "percent"
+          }
+        ]
+      },
+      {
+        "sectionId": "dashboard-alerts",
+        "sectionName": "实时预警区",
+        "type": "timeline",
+        "description": "展示最新10条故障预警、异常设备、待处理工单"
+      },
+      {
+        "sectionId": "dashboard-charts",
+        "sectionName": "趋势分析区",
+        "type": "chart",
+        "charts": [
+          {
+            "chartId": "oee-trend",
+            "chartType": "line",
+            "title": "OEE趋势",
+            "timeDimension": "最近24小时",
+            "metric": "小时级OEE"
+          },
+          {
+            "chartId": "fault-rate-trend",
+            "chartType": "line",
+            "title": "故障率趋势",
+            "timeDimension": "最近7天",
+            "metric": "日故障率"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      { "key": "fullscreen", "label": "全屏", "type": "action", "location": "toolbar-right" },
+      { "key": "refresh", "label": "刷新", "type": "action", "location": "toolbar-right" },
+      { "key": "settings", "label": "设置", "type": "action", "location": "toolbar-right" }
+    ]
+  }
+}
