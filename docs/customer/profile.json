@@ -1,167 +1,134 @@
 {
-  "profile": {
-    "companyName": "宜昌长机科技有限责任公司",
-    "shortName": "长机科技",
-    "isListed": false,
-    "stockCode": "",
-    "website": "https://www.cjmt.com.cn/",
-    "industry": "装备制造",
-    "subIndustry": "机床工具/齿轮加工装备",
-    "scale": "中型企业",
-    "mainBusiness": "数控齿轮加工机床研发制造",
-    "products": [
-      { "name": "数控插齿机", "description": "工信部认定单项冠军产品，覆盖Φ120mm-Φ5000mm全系列" },
-      { "name": "数控滚齿机", "description": "加工直径Φ500mm-Φ6000mm，适用于能源、交通、重型机械" },
-      { "name": "数控铣齿机", "description": "加工直径Φ800mm-Φ8000mm，适用于风电、回转支承、矿山机械" },
-      { "name": "齿条加工设备", "description": "齿条插齿/铣齿/磨齿机，适用于工程机械、电梯、汽车转向器" },
-      { "name": "刮齿机系列", "description": "高效率新型制齿设备，比插齿快3-5倍" }
+  "id": "sungrow-power-2026",
+  "companyName": "阳光电源股份有限公司",
+  "shortName": "阳光电源",
+  "registeredName": "阳光电源股份有限公司",
+  "website": "https://cn.sungrowpower.com",
+  "industry": "新能源/高端制造",
+  "subIndustry": "光伏/储能/风电/氢能/新能源汽车电控",
+  "scale": "大型上市企业（员工数万人，研发人员占比40%）",
+  "stage": "成熟期",
+  "type": "上市公司（职业经理人管理+技术创始人控股）",
+  "rating": "AAA",
+  "tags": ["新能源", "光伏", "储能", "风电", "氢能", "智能制造", "全球化", "科创板", "国家重点高新技术企业", "省级专精特新"],
+  "priority": "高",
+  "products": [
+    { "name": "光伏逆变器", "description": "户用/组串/模块化/中压并网逆变器", "category": "光伏设备", "features": [], "targetUsers": ["家庭用户", "工商业用户", "地面电站/能源基地"] },
+    { "name": "储能系统", "description": "户用/工商业/电力储能、储能变流器", "category": "储能设备", "features": [], "targetUsers": ["公用事业", "工商业用户", "家庭用户"] },
+    { "name": "风电变流及传动产品", "description": "双馈/全功率风电变流器、变桨、传动变频器", "category": "风电设备", "features": [], "targetUsers": ["风电场开发商", "新能源电站"] },
+    { "name": "新能源汽车电控及电源系统", "description": "电控、电源、电驱总成", "category": "新能源汽车", "features": [], "targetUsers": ["新能源车企"] },
+    { "name": "充电设备", "description": "超充桩、直流桩、交流桩、光储充一体化", "category": "充电设施", "features": [], "targetUsers": ["公用事业", "工商业用户"] },
+    { "name": "氢能装备", "description": "柔性制氢设备及系统", "category": "氢能设备", "features": [], "targetUsers": ["能源基地", "工业用户"] },
+    { "name": "智慧运营平台", "description": "光风储智慧运营管理平台、无人机巡检、智能诊断", "category": "数字化服务", "features": [], "targetUsers": ["电站运营商", "公用事业"] },
+    { "name": "碳管理平台", "description": "iCarbon能碳平台", "category": "ESG服务", "features": [], "targetUsers": ["企业客户", "公用事业"] }
+  ],
+  "mainBusiness": "清洁能源转换技术研发与装备制造，覆盖光、风、储、充、氢全产业链",
+  "targetCustomers": ["家庭用户", "工商业用户", "地面电站/能源基地", "公用事业", "新能源车企"],
+  "businessModel": "B2B设备销售+电站投资开发+服务运营",
+  "techStack": {
+    "current": ["ERP", "MOM", "WMS", "IIoT"],
+    "inferred": ["西门子MOM系统", "iSolarDesign智能设计平台", "iCarbon能碳平台"],
+    "maturity": "中高",
+    "direction": "AI应用+数据价值挖掘+全球基地协同"
+  },
+  "strategy": {
+    "phase": "数字化转型深化期：ERP/MOM/WMS/IIoT五大系统已建成，工厂数字化覆盖率80%，正处于从系统建设向数据价值挖掘、AI应用、全球基地协同升级阶段",
+    "growthStage": "全球化扩张期：20+国际分支机构、四大制造基地、持续招聘技术人才",
+    "competitivePosition": "全球新能源发电行业第一方阵，光伏逆变器/储能系统累计出货量全球领先",
+    "digitalMaturity": "中高：工厂数字化系统覆盖率达80%",
+    "analysisPath": "A+B",
+    "informationQuality": "75%",
+    "expansionSignals": [
+      "2026届全球校园招聘已启动，提供160+岗位",
+      "2025年持续招聘制造系统工程师、软件开发工程师、财务系统组主管、项目经理、HRBP、供应链质量技术总监",
+      "全球100+国家业务布局，四大制造基地（合肥、泰国、印度等）"
     ],
-    "targetCustomers": [
-      "风电装备制造",
-      "工程机械企业",
-      "汽车转向器厂商",
-      "回转支承制造",
-      "矿山冶金企业",
-      "电梯制造行业"
+    "contractionSignals": [],
+    "riskSignals": ["外部董事刘振涉嫌严重违纪违法，正在接受纪律审查和监察调查"]
+  },
+  "painPoints": [
+    { "category": "生产管理", "description": "四大制造基地（合肥/泰国/印度）排产与进度透明度可能不统一，插单/改单响应效率低", "severity": "中", "source": "推演" },
+    { "category": "质量管理", "description": "全球化生产中质量追溯体系可能存在数据孤岛，客诉处理与根因分析效率有待提升", "severity": "中", "source": "推演" },
+    { "category": "供应链管理", "description": "供应商分散在全球，对账困难、质量追溯、交期可视化存在挑战", "severity": "高", "source": "推演" },
+    { "category": "成本核算", "description": "多基地、多币种、多产品线环境下，成本核算复杂，报价与利润分析精度需提升", "severity": "中", "source": "推演" },
+    { "category": "设备管理", "description": "设备故障响应可能仍依赖人工经验，OEE分析与预测性维护有待加强", "severity": "中", "source": "推演" }
+  ],
+  "requirements": [],
+  "opportunities": [
+    { "area": "智能制造升级", "description": "基于现有ERP/MOM/WMS/IIoT，深化APS排程、AI预测性维护、数字孪生，提升四大基地协同效率", "valueProp": "提升四大制造基地协同效率，降低生产成本", "likelihood": "高" },
+    { "area": "全球供应链协同", "description": "建立SRM/供应商门户，实现跨国供应商对账、质量追溯、交期可视化，支持其全球化采购", "valueProp": "实现跨国供应商协同，降低供应链风险", "likelihood": "中" },
+    { "area": "碳管理平台扩展", "description": "基于iCarbon平台，扩展到全产业链碳足迹追踪与合规对接（欧盟CBAM等），助力其ESG评级提升", "valueProp": "助力ESG评级提升，满足欧盟CBAM等合规要求", "likelihood": "高" }
+  ],
+  "contacts": [],
+  "budget": {
+    "range": "中",
+    "deliveryTime": "未知",
+    "paymentCycle": "未知",
+    "decisionCycle": "6-12个月",
+    "intentionLevel": 0,
+    "stage": "初步接触"
+  },
+  "decision": {
+    "makers": ["CEO", "分管副总裁"],
+    "influencers": ["技术部门（研究院）", "供应链/采购委员会", "财务/法务"],
+    "blockers": [],
+    "criteria": ["技术价值", "ROI量化", "合规性"],
+    "timeline": "重大项目需董事会审批"
+  },
+  "tracking": {
+    "status": "新客户",
+    "stage": "档案建立",
+    "nextAction": "执行 /sales-guide 获取销售进攻指南",
+    "lastUpdate": "2026-03-29",
+    "touchpoints": []
+  },
+  "metadata": {
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-03-29T00:00:00.000Z",
+    "createdBy": "AI",
+    "version": "1.0",
+    "sources": [
+      "https://cn.sungrowpower.com",
+      "https://www.sungrowpower.com/en/smart-energy-products",
+      "新浪财经",
+      "安徽纪检监察网"
     ],
-    "businessModel": "B2B装备制造+售后技术服务",
-    "rating": "A",
-    "tags": [
-      "国家级专精特新重点小巨人",
-      "国家级单项冠军",
-      "高新技术企业",
-      "国家机床工具行业重点骨干企业",
-      "湖北省工程技术研究中心",
-      "两化融合示范企业",
-      "DCMM数据管理能力认证",
-      "智能制造国家队"
-    ],
-    "summary": "国家机床工具行业重点骨干企业，专业生产全系列数控插齿机、滚齿机、铣齿机等制齿设备，是中国唯一的全系列和最大型插齿机制造基地",
-
-    "registration": {
-      "foundedDate": "1968年（前身为长江机床厂）",
-      "registeredCapital": "1460万人民币",
-      "paidInCapital": "",
-      "ownershipType": "国有背景改制企业[假设待验证]",
-      "branches": {
-        "count": "",
-        "locations": []
-      },
-      "legalRisks": "无",
-      "operatingAnomalies": "无",
-      "penalties": "无",
-      "summary": "从1968年长江机床厂演变至今，超50年行业积淀；总资产5亿余元但注册资本仅1460万；净资产4.2亿占总资产84%显示资产结构健康，负债率低"
-    },
-
-    "policyAnalysis": {
-      "isSpecialized": true,
-      "isDigitalTransformation": true,
-      "isESG": false,
-      "isHighTech": true,
-      "policySupportLevel": "高：国家级专精特新小巨人+单项冠军+智能制造国家队",
-      "leverageStrategy": "依托国家级示范企业身份，对接工信部智能制造试点政策；利用DCMM认证基础推进数据治理项目"
-    },
-
-    "timing": {
-      "currentPhase": "数字化深化与智能制造升级期",
-      "evidence": "2025年通过DCMM数据管理能力贯标认证；获评湖北省两化融合示范企业；2025-2026校招扩招配合业务扩张",
-      "entryStrategy": "趁DCMM认证后数据管理意识觉醒期切入，推荐数据驱动的生产/质量/设备一体化方案；可对接西门子生态降低准入门槛"
-    },
-
+    "confidence": 75,
+    "notes": "全球领先的清洁能源科技企业，专注于光伏逆变器、储能系统、风电变流及传动产品、新能源汽车电控及电源系统、充电设备、可再生能源制氢系统等新能源电源设备的研产销服和新能源电站投资开发。1997年成立，2011年上市，超过27年发展历史。全球100+国家业务布局，四大制造基地（合肥、泰国、印度等），研发人员占比40%，专利超11000件。2025年前三季度收入234亿元，同比增长6%。",
+    "policyAnalysis": "国家重点高新技术企业，子公司阳光氢能获安徽省专精特新认证。推出iSolarDesign智能设计平台，建立先进制造生态系统，推进TPM/TQM管理工作和ESG体系建设，在慕尼黑开设技术创新中心。发布第十份可持续发展报告，积极推进ESG体系建设，全球装机容量超过405GW。",
     "creditRisk": {
-      "legalRisk": "低：无诉讼、失信、行政处罚记录",
-      "operationalRisk": "低：AAA级银行资信，净资产4.2亿资产结构健康",
-      "creditRating": "AAA",
-      "warnings": [],
-      "salesAdvice": "资信优质，可放心合作；决策链较规范需从技术部门切入"
+      "riskLevel": "中",
+      "summary": "外部董事涉嫌违纪违法接受调查，未发现失信被执行人、重大诉讼、行政处罚或经营异常等直接负面记录",
+      "legalRisks": ["外部董事刘振涉嫌严重违纪违法，正在接受纪律审查和监察调查"],
+      "isHighTech": true,
+      "isSpecializedSME": true,
+      "smeLevel": "省级"
     },
-
     "organization": {
-      "type": "职业化管理+国有背景[假设待验证]",
-      "decisionChain": "技术部门提出需求→生产/质量部门会签→采购部门评估→高层审批决策[假设待验证]",
+      "type": "上市公司，职业经理人管理+技术创始人控制，事业部制（光、风、储、充、氢、智慧运营等独立业务线）",
+      "decisionChain": "技术部门（研究院）→供应链/采购委员会→财务/法务→分管副总裁→CEO/董事会（重大项目需董事会审批）",
       "keyPersons": [
-        { "name": "叶又生", "title": "董事长" },
-        { "name": "唐兆庆", "title": "总经理" },
-        { "name": "钟瑞龄", "title": "总工程师" },
-        { "name": "瞿祖训", "title": "副总经理（生产）" },
-        { "name": "胡天明", "title": "副总经理" },
-        { "name": "段作东", "title": "董事、党委书记" },
-        { "name": "彭玲", "title": "董事" },
-        { "name": "戴圣荣", "title": "董事" }
+        { "role": "创始人/董事长兼CEO", "name": "曹仁贤", "concerns": ["技术价值", "ROI", "合规性"], "motivations": ["技术创新", "全球扩张", "ESG领先"], "approach": "从技术价值切入（能效提升、成本节约、合规性），提供可量化的ROI分析" }
       ],
-      "salesStrategy": "从技术切入，强调智能制造升级与数据管理能力契合其国家级示范企业定位；推荐DCMM数据管理、生产追溯、质量管控类方案；重视西门子等国际品牌背书"
+      "salesStrategy": "从技术价值切入（能效提升、成本节约、合规性），提供可量化的ROI分析；绑定其全球化扩张与智能制造升级需求，强调系统在多基地协同、数据实时性、合规对接方面的优势；通过技术部门或供应链质量技术部门切入试点，成功后复制到四大制造基地"
     },
-
-    "strategy": {
-      "phase": "数字化深化与智能制造升级期",
-      "growthStage": "扩张期：2025-2026校招扩招，总装车间设备升级",
-      "competitivePosition": "国内插齿机细分领域第一",
-      "digitalMaturity": "中高：已通过DCMM认证，两化融合示范企业",
-      "analysisPath": "A+B",
-      "informationQuality": "75%",
-      "expansionSignals": [
-        "2025-2026校园招聘正在进行中",
-        "总装车间已完成设备调试与检验阶段升级"
-      ],
-      "contractionSignals": [],
-      "riskSignals": []
-    },
-
-    "techStack": {
-      "current": [],
-      "inferred": ["西门子数控系统", "DCMM数据管理"],
-      "maturity": "中",
-      "direction": "数据驱动+智能制造"
-    },
-
-    "keyMetrics": [
-      { "name": "总资产", "value": "5亿余元" },
-      { "name": "净资产", "value": "超4.2亿元" },
-      { "name": "占地面积", "value": "24万平米" },
-      { "name": "厂房面积", "value": "15万平米" }
-    ],
-
-    "painPoints": [
-      { "area": "生产管理", "description": "多品种小批量定制化生产，排产复杂，进度跟踪依赖人工[假设待验证]", "severity": "中" },
-      { "area": "质量管理", "description": "关键工序依赖工人经验，质量一致性难以保障，客诉追溯困难[假设待验证]", "severity": "高" },
-      { "area": "设备管理", "description": "恒温装配、整机联机等关键设备维护依赖经验，预测性维护能力不足[假设待验证]", "severity": "中" },
-      { "area": "成本核算", "description": "定制化产品成本核算复杂，报价缺乏数据支撑，利润空间不透明[假设待验证]", "severity": "中" },
-      { "area": "供应链管理", "description": "关键部件供应商筛选严格，但供应商质量追溯和协同管理仍需提升[假设待验证]", "severity": "中" }
-    ],
-
-    "opportunities": [
-      { "area": "智能制造升级", "description": "依托智能制造国家队和两化融合示范企业身份，推进MES/APS/数字孪生项目", "likelihood": "高" },
-      { "area": "数据治理深化", "description": "基于DCMM认证基础，扩展数据中台、BI分析、预测性维护应用", "likelihood": "中" },
-      { "area": "质量管理升级", "description": "结合严格制件和恒温装配工艺要求，建设QMS和全流程追溯系统", "likelihood": "高" }
-    ],
-
     "hiring": {
       "keySignals": [
-        "2026校园招聘正在进行中，显示企业处于人才扩张期",
-        "关键技术工人送德国西门子培训认证，重视高端技能人才培养"
+        "2026届全球校园招聘已启动，提供160+岗位",
+        "2025年持续招聘制造系统工程师、软件开发工程师、财务系统组主管、项目经理、HRBP、供应链质量技术总监",
+        "招聘信号显示公司在智能制造、数字化转型、供应链管理、全球化业务扩张等方面持续投入"
       ]
     },
-
     "competition": {
-      "industryRank": "国内插齿机细分领域第一",
-      "marketShare": "中国唯一的全系列和最大型插齿机制造基地",
-      "mainCompetitors": ["重庆机床集团", "南京二机床", "Gleason", "Liebherr"],
-      "knownClients": []
+      "industryRank": "全球新能源发电行业第一方阵",
+      "marketShare": "光伏逆变器、储能系统累计出货量全球领先；风电变流器2025年装机量全球第一",
+      "mainCompetitors": ["华为数字能源", "SMA", "Fronius", "锦浪科技", "固德威", "宁德时代"],
+      "knownClients": ["全球100+国家的电站开发商", "公用事业公司", "工商业用户"]
     },
-
-    "salesGuide": null,
-    "requirements": null,
-    "contacts": [],
-    "tracking": null,
-    "budget": null,
-
-    "metadata": {
-      "createdAt": "2025-03-25T00:00:00.000Z",
-      "updatedAt": "2025-03-25T10:00:00.000Z",
-      "createdBy": "AI",
-      "version": "1.1",
-      "sources": ["https://www.cjmt.com.cn/", "宜昌市总工会官网", "媒体公开报道"],
-      "confidence": 85
+    "timing": {
+      "phase": "数字化转型深化期：ERP/MOM/WMS/IIoT五大系统已建成，工厂数字化覆盖率80%，正处于从系统建设向数据价值挖掘、AI应用、全球基地协同升级阶段",
+      "entryStrategy": "绑定其智能制造升级（MOM/IIoT深化）、全球供应链协同（多基地WMS/APS）、财务数字化（财务系统组主管在招）三大方向，提供轻量化试点（如单个制造基地的WMS优化或MOM模块扩展），成功后复制到合肥/泰国/印度基地；重点关注其供应链质量技术部门、技术研究院、财务系统组",
+      "urgency": "中等偏上：行业竞争加剧（华为等竞对也在推智能制造），阳光电源已启动数字化深化但仍有提升空间（多基地协同、AI预测性维护、碳管理平台等），窗口期6-12个月内"
     }
   }
 }
